@@ -1,0 +1,573 @@
+<html><head><base href="/" />
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #ff0000, #ff4848);
+    overflow: hidden;
+  }
+
+  .logo-container {
+    text-align: center;
+    margin-bottom: 15px; /* Reduced from 30px */
+    animation: logoAppear 0.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @keyframes logoAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .logo-svg {
+    width: 100px; /* Reduced from 120px */
+    height: 100px; /* Reduced from 120px */
+    margin-top: 15px; /* Add space above logo */
+    margin-bottom: 10px;
+  }
+
+  .waving-boy {
+    animation: float-boy 3s ease-in-out infinite;
+    width: 120px !important; /* Reduced from 140px */
+    height: 120px !important; /* Reduced from 140px */
+    margin: 10px auto !important; /* Reduced margin */
+  }
+
+  @keyframes float-boy {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px; /* Reduced from 40px */
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Darkened shadow */
+    width: 100%;
+    max-width: 350px; /* Reduced from 400px */
+    position: relative;
+    z-index: 1;
+    animation: containerAppear 0.6s ease-out;
+    border: 2px solid #000; /* Added black border */
+  }
+
+  @keyframes containerAppear {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .floating-shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px; /* Reduced from 20px */
+    margin-top: 0; /* Remove top margin since it's first */
+    position: relative;
+    animation: slideDown 0.5s ease-out;
+    font-size: 24px; /* Added to reduce heading size */
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #loginForm {
+    margin-bottom: 25px; /* Add space between form and social logos */
+  }
+
+  .input-group {
+    margin-bottom: 12px; /* Reduced from 15px */
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    transform-origin: left;
+    animation: labelAppear 0.5s ease-out;
+  }
+
+  @keyframes labelAppear {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 10px; /* Reduced from 12px */
+    border: 2px solid #000; /* Changed from #ddd to black */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease, background-color 0.2s ease;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .input-group input:focus {
+    border-color: #ff0000;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+    transform: scale(1.02);
+    background-color: rgba(255, 0, 0, 0.05);
+  }
+
+  .input-group input::selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #333;
+  }
+
+  .input-group input::-moz-selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #333;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px; /* Reduced from 12px */
+    background: linear-gradient(45deg, #ff0000, #ff4848);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(35deg);
+    transition: transform 0.5s ease;
+  }
+
+  button:hover::after {
+    transform: translate(-50%, -50%) rotate(35deg) translateX(30%);
+  }
+
+  .links {
+    margin-top: 15px; /* Reduced from 20px */
+    text-align: center;
+    animation: fadeIn 0.5s ease-out 0.3s backwards;
+  }
+
+  .links a {
+    color: #ff0000;
+    text-decoration: none;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #ff0000, #ff4848);
+    transition: width 0.3s ease;
+  }
+
+  .links a:hover {
+    color: #ff4848;
+  }
+
+  .links a:hover::after {
+    width: 100%;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-1000px) rotate(720deg); }
+  }
+
+  .password-container {
+    position: relative;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  .password-toggle:hover {
+    color: #ff0000;
+  }
+
+  .password-toggle:focus {
+    outline: none;
+    color: #ff0000;
+  }
+
+  .social-logos {
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* Reduced from 15px */
+    margin-top: 15px; /* Reduced from 20px */
+    padding: 10px; /* Reduced from 12px */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    border: 2px solid #000;
+    flex-wrap: wrap;
+  }
+
+  .social-logo {
+    width: 30px; /* Reduced from 35px */
+    height: 30px; /* Reduced from 35px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 6px; /* Reduced from 8px */
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #000;
+  }
+
+  .social-logo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #f8f8f8;
+  }
+
+  .social-logo:active {
+    transform: translateY(0);
+  }
+
+  /* General text selection highlighting */
+  ::selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #333;
+  }
+
+  ::-moz-selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #333;
+  }
+
+  /* Highlight text in input fields */
+  input::selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #333;
+  }
+
+  input::-moz-selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #333;
+  }
+
+  /* Highlight text in buttons */
+  button::selection {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
+  button::-moz-selection {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
+  /* Highlight text in links */
+  a::selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+  }
+
+  a::-moz-selection {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+  }
+
+  /* Highlight text in labels */
+  label::selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #555;
+  }
+
+  label::-moz-selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #555;
+  }
+
+  /* Highlight heading text */
+  h1::selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #333;
+  }
+
+  h1::-moz-selection {
+    background: rgba(255, 0, 0, 0.15);
+    color: #333;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="floating-shapes">
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <circle id="shape1" cx="0" cy="0" r="20" fill="rgba(255,255,255,0.1)"/>
+      <rect id="shape2" width="40" height="40" fill="rgba(255,255,255,0.1)"/>
+      <polygon id="shape3" points="0,0 20,40 40,0" fill="rgba(255,255,255,0.1)"/>
+    </defs>
+    <use href="#shape1" x="10%" y="10%">
+      <animate attributeName="y" from="0" to="-100%" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" from="10%" to="15%" dur="3s" repeatCount="indefinite" />
+    </use>
+    <use href="#shape2" x="30%" y="20%">
+      <animate attributeName="y" from="0" to="-100%" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="x" from="30%" to="35%" dur="4s" repeatCount="indefinite" />
+    </use>
+    <use href="#shape3" x="70%" y="30%">
+      <animate attributeName="y" from="0" to="-100%" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="x" from="70%" to="75%" dur="3.5s" repeatCount="indefinite" />
+    </use>
+  </svg>
+</div>
+
+<div class="login-container">
+  <div class="logo-container">
+    <h1>Welcome Back</h1>
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff0000"/>
+          <stop offset="100%" style="stop-color:#ff4848"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="5"/>
+      <path d="M35 50 L45 60 L65 40" stroke="url(#logoGradient)" stroke-width="5" fill="none">
+        <animate attributeName="stroke-dasharray" from="0,1000" to="1000,0" dur="1.5s" fill="freeze"/>
+      </path>
+    </svg>
+    <svg class="waving-boy" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Body -->
+      <circle cx="100" cy="80" r="30" fill="#ff0000"/>
+      <!-- Head -->
+      <circle cx="100" cy="40" r="20" fill="#ffb6c1"/>
+      <!-- Waving Arm -->
+      <path id="waving-arm" d="M100 70 L140 50" stroke="#ff0000" stroke-width="10" stroke-linecap="round">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 100 70"
+          to="20 100 70"
+          dur="0.5s"
+          repeatCount="indefinite"
+          direction="alternate"/>
+      </path>
+      <!-- Other Arm -->
+      <path d="M100 70 L60 80" stroke="#ff0000" stroke-width="10" stroke-linecap="round"/>
+      <!-- Legs -->
+      <path d="M100 110 L80 140" stroke="#ff0000" stroke-width="10" stroke-linecap="round"/>
+      <path d="M100 110 L120 140" stroke="#ff0000" stroke-width="10" stroke-linecap="round"/>
+      <!-- Smile -->
+      <path d="M90 40 Q100 50 110 40" stroke="#333" stroke-width="2" fill="none"/>
+      <!-- Eyes -->
+      <circle cx="95" cy="35" r="2" fill="#333"/>
+      <circle cx="105" cy="35" r="2" fill="#333"/>
+    </svg>
+  </div>
+  <form id="loginForm">
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <div class="password-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" class="password-toggle" id="passwordToggle">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path id="eyePath" fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <button type="submit">Log In</button>
+  </form>
+  <div class="links">
+    <a href="https://example.com/forgot-password">Forgot Password?</a>
+    <a href="https://example.com/signup">Sign Up</a>
+  </div>
+  <div class="social-logos">
+    <!-- Google -->
+    <svg class="social-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#4285F4" d="M21.35 12.04c0-.79-.07-1.54-.19-2.27H12v4.51h5.35c-.23 1.24-.93 2.29-1.97 3v2.51h3.18c1.86-1.71 2.94-4.24 2.94-7.75z"/>
+      <path fill="#34A853" d="M12 21c2.66 0 4.89-.89 6.51-2.42l-3.18-2.51c-.88.59-2.01.95-3.33.95-2.56 0-4.73-1.72-5.5-4.05H3.21v2.59C4.84 18.76 8.14 21 12 21z"/>
+      <path fill="#FBBC05" d="M6.5 12.95c-.2-.58-.31-1.21-.31-1.85s.11-1.27.31-1.85V6.66H3.21C2.44 8.21 2 9.96 2 11.9s.44 3.69 1.21 5.24l3.29-2.59z"/>
+      <path fill="#EA4335" d="M12 6.1c1.44 0 2.73.5 3.75 1.47l2.82-2.82C16.89 3.18 14.66 2.3 12 2.3c-3.86 0-7.16 2.24-8.79 5.46l3.29 2.59c.77-2.33 2.94-4.05 5.5-4.05z"/>
+    </svg>
+    <!-- Facebook -->
+    <svg class="social-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#1877F2" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.621v-6.971h-2.346v-2.717h2.346V9.31c0-2.325 1.42-3.591 3.494-3.591.993 0 1.847.074 2.096.107v2.43l-1.438.001c-1.128 0-1.346.536-1.346 1.323v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.994V3.993C21 3.445 20.555 3 20.007 3z"/>
+    </svg>
+    <!-- Twitter/X -->
+    <svg class="social-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#000000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+    <!-- LinkedIn -->
+    <svg class="social-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+    <!-- GitHub -->
+    <svg class="social-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#24292F" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+// Login form handler
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  
+  console.log('Login attempt:', { username, password });
+  
+  const button = this.querySelector('button[type="submit"]');
+  button.textContent = 'Logging in...';
+  button.disabled = true;
+  
+  // Here you would typically make an API call to your backend
+  setTimeout(() => {
+    alert('Login successful!');
+    button.textContent = 'Log In';
+    button.disabled = false;
+  }, 1500);
+});
+
+// Password toggle functionality
+document.getElementById('passwordToggle').addEventListener('click', function() {
+  const passwordInput = document.getElementById('password');
+  const eyePath = document.getElementById('eyePath');
+  
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    eyePath.setAttribute('d', 'M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z');
+  } else {
+    passwordInput.type = 'password';
+    eyePath.setAttribute('d', 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z');
+  }
+});
+
+// Enhanced social logo click handlers
+document.querySelectorAll('.social-logo').forEach((logo, index) => {
+  const platforms = ['Google', 'Facebook', 'Twitter', 'LinkedIn', 'GitHub'];
+  
+  logo.addEventListener('click', function() {
+    console.log(`Logging in with ${platforms[index]}`);
+    // Here you would typically implement OAuth login
+    alert(`${platforms[index]} login initiated!`);
+  });
+
+  // Add tooltips
+  logo.setAttribute('title', `Continue with ${platforms[index]}`);
+});
+
+// Add ripple effect to social logos
+document.querySelectorAll('.social-logo').forEach(logo => {
+  logo.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.classList.add('social-logo-ripple');
+    
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+    ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+    
+    this.appendChild(ripple);
+    
+    ripple.addEventListener('animationend', () => {
+      ripple.remove();
+    });
+  });
+});
+</script>
+
+</body></html>
